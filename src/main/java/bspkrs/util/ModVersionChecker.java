@@ -1,16 +1,15 @@
 package bspkrs.util;
 
+import bspkrs.bspkrscore.fml.bspkrsCoreMod;
+import com.google.common.collect.Ordering;
+import net.minecraft.util.text.TextComponentTranslation;
+
 import java.io.File;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.prefs.Preferences;
-
-import net.minecraft.util.StatCollector;
-import bspkrs.bspkrscore.fml.bspkrsCoreMod;
-
-import com.google.common.collect.Ordering;
 
 /**
  * This class retrieves a version string from a text file at a given URL and compares it against the locally provided version string. It
@@ -219,13 +218,13 @@ public class ModVersionChecker
                 if (!isCurrentVersion(versionChecker.currentVersion, versionChecker.newVersion))
                     r = versionChecker.getInGameMessage();
                 else
-                    r = new String[] { StatCollector.translateToLocalFormatted("bspkrs.modversionchecker.uptodate", versionChecker.modID) };
+                    r = new String[] { new TextComponentTranslation("bspkrs.modversionchecker.uptodate", versionChecker.modID).getUnformattedComponentText() };
             }
             else
-                r = new String[] { StatCollector.translateToLocalFormatted("bspkrs.modversionchecker.error", versionChecker.modID) };
+                r = new String[] { new TextComponentTranslation("bspkrs.modversionchecker.error", versionChecker.modID).getUnformattedComponentText() };
         }
         else
-            r = new String[] { StatCollector.translateToLocal("bspkrs.modversionchecker.invalidmodid") };
+            r = new String[] { new TextComponentTranslation("bspkrs.modversionchecker.invalidmodid").getUnformattedComponentText() };
 
         return r;
     }

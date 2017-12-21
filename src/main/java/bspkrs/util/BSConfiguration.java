@@ -1,6 +1,7 @@
 package bspkrs.util;
 
 import java.io.File;
+import java.util.Arrays;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
@@ -126,7 +127,7 @@ public class BSConfiguration extends Configuration
     public String getString(String name, String category, String defaultValue, String comment, String[] validValues)
     {
         Property prop = this.get(category, name, defaultValue);
-        prop.comment = comment + " [default: " + defaultValue + "]";
+        prop.setComment(comment + " [default: " + defaultValue + "]");
         return prop.getString();
     }
 
@@ -135,7 +136,7 @@ public class BSConfiguration extends Configuration
      * 
      * @param name Name of the property.
      * @param category Category of the property.
-     * @param defaultValue Default value of the property.
+     * @param defaultValues Default value of the property.
      * @param comment A brief description what the property does.
      * @return The value of the new string property.
      */
@@ -158,7 +159,7 @@ public class BSConfiguration extends Configuration
     public String[] getStringList(String name, String category, String[] defaultValue, String comment, String[] validValues)
     {
         Property prop = this.get(category, name, defaultValue);
-        prop.comment = comment + " [default: " + defaultValue + "]";
+        prop.setComment(" [default: " + Arrays.toString(defaultValue) + "]");
         return prop.getStringList();
     }
 
@@ -175,7 +176,7 @@ public class BSConfiguration extends Configuration
     public boolean getBoolean(String name, String category, boolean defaultValue, String comment)
     {
         Property prop = this.get(category, name, defaultValue);
-        prop.comment = comment + " [default: " + defaultValue + "]";
+        prop.setComment(comment + " [default: " + defaultValue + "]");
         return prop.getBoolean(defaultValue);
     }
 
@@ -194,7 +195,7 @@ public class BSConfiguration extends Configuration
     public int getInt(String name, String category, int defaultValue, int minValue, int maxValue, String comment)
     {
         Property prop = this.get(category, name, defaultValue);
-        prop.comment = comment + " [range: " + minValue + " ~ " + maxValue + ", default: " + defaultValue + "]";
+        prop.setComment(comment + " [range: " + minValue + " ~ " + maxValue + ", default: " + defaultValue + "]");
         return prop.getInt(defaultValue) < minValue ? minValue : (prop.getInt(defaultValue) > maxValue ? maxValue : prop.getInt(defaultValue));
     }
 
@@ -213,7 +214,7 @@ public class BSConfiguration extends Configuration
     public float getFloat(String name, String category, float defaultValue, float minValue, float maxValue, String comment)
     {
         Property prop = this.get(category, name, Float.toString(defaultValue));
-        prop.comment = comment + " [range: " + minValue + " ~ " + maxValue + ", default: " + defaultValue + "]";
+        prop.setComment(comment + " [range: " + minValue + " ~ " + maxValue + ", default: " + defaultValue + "]");
         try
         {
             return Float.parseFloat(prop.getString()) < minValue ? minValue : (Float.parseFloat(prop.getString()) > maxValue ? maxValue : Float.parseFloat(prop.getString()));

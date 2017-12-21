@@ -7,3 +7,6 @@
 .project
 .classpath
 build.properties.old
+.idea/
+classes/
+*.iml
